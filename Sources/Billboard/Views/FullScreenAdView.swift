@@ -9,13 +9,19 @@ import SwiftUI
 
 struct FullScreenAdView : View {
     let advert : BillboardAd
-    
+    let config : BillboardConfiguration
+
+    init(advert: BillboardAd, config: BillboardConfiguration) {
+        self.advert = advert
+        self.config = config
+    }
+
     var body: some View {
         VStack {
             Spacer()
             HStack {
                 Spacer()
-                BillboardTextView(advert: advert)
+                BillboardTextView(advert: advert, config: config)
                     .padding(.bottom, 24)
                 Spacer()
             }
@@ -53,6 +59,6 @@ struct FullScreenAdView : View {
 
 struct FullScreenAdView_Previews: PreviewProvider {
     static var previews: some View {
-        FullScreenAdView(advert: BillboardSamples.sampleFullScreenAd)
+        FullScreenAdView(advert: BillboardSamples.sampleFullScreenAd, config: BillboardConfiguration())
     }
 }

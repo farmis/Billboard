@@ -16,14 +16,14 @@ struct ContentView: View {
     @State private var adtoshow :BillboardAd? = nil
     @State private var allAds : [BillboardAd] = []
     
-    let config = BillboardConfiguration(advertDuration: 5)
-    
+    let config = BillboardConfiguration(advertDuration: 5, isPromotion: true)
+
     var body: some View {
         NavigationStack {
             List {
                 if let advert = allAds.randomElement() {
                     Section {
-                        BillboardBannerView(advert: advert, hideDismissButtonAndTimer: true)
+                        BillboardBannerView(advert: advert, config: config, hideDismissButtonAndTimer: true)
                             .listRowBackground(Color.clear)
                             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
@@ -66,7 +66,7 @@ struct ContentView: View {
         }
         .safeAreaInset(edge: .bottom, content: {
             if let advert = allAds.randomElement() {
-                BillboardBannerView(advert: advert)
+                BillboardBannerView(advert: advert, config: config)
                     .padding()
                 
             }
@@ -83,7 +83,7 @@ struct ContentView: View {
                 showRandomAdvert = !newValue
             }
         }
-        .showBillboard(when: $showRandomAdvert) {
+        .showBillboard(when: $showRandomAdvert, configuration: config) {
             // Replace this view with your Paywall
             VStack {
                 Text("Your Paywall goes here")

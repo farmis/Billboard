@@ -52,17 +52,18 @@ public struct BillboardView<Content:View>: View {
                                                canDismiss: $canDismiss)
                     }
                 }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showPaywall.toggle()
-                    } label: {
-                        Text("Remove Ads")
-                            .font(.system(.footnote, design: .rounded))
-                            .bold()
+                if !config.isPromotion {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            showPaywall.toggle()
+                        } label: {
+                            Text("Remove Ads")
+                                .font(.system(.footnote, design: .rounded))
+                                .bold()
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
                     }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
                 }
             }
         }
@@ -81,26 +82,27 @@ public struct BillboardView<Content:View>: View {
             advert.background.ignoresSafeArea()
             
             if advert.fullscreen {
-                FullScreenAdView(advert: advert)
+                FullScreenAdView(advert: advert, config: config)
             } else {
-                DefaultAdView(advert: advert)
+                DefaultAdView(advert: advert, config: config)
             }
             
             HStack {
-                Button {
-                    showPaywall.toggle()
-                } label: {
-                    Text("Remove Ads")
-                        .font(.system(.footnote, design: .rounded))
-                        .bold()
+                if !config.isPromotion {
+                    Button {
+                        showPaywall.toggle()
+                    } label: {
+                        Text("Remove Ads")
+                            .font(.system(.footnote, design: .rounded))
+                            .bold()
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
                 }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                
                 Spacer()
                 
                 // TimerView
-                if canDismiss {
+                if canDismiss || config.isPromotion {
                     BillboardDismissButton()
                         .onAppear {
                             #if os(iOS)

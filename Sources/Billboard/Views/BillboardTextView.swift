@@ -9,11 +9,18 @@ import SwiftUI
 
 struct BillboardTextView : View {
     let advert: BillboardAd
+    let config : BillboardConfiguration
+
+    init(advert: BillboardAd, config: BillboardConfiguration) {
+        self.advert = advert
+        self.config = config
+    }
     
     var body: some View {
         VStack(spacing: 10) {
             BillboardAdInfoLabel(advert: advert)
-            
+                .opacity(config.isPromotion ? 0 : 1)
+
             VStack(spacing: 6) {
                 Text(advert.title)
                     .font(.compatibleSystem(.title2, design: .rounded, weight: .heavy))
@@ -31,7 +38,7 @@ struct BillboardTextView : View {
 
 struct BillboardTextView_Previews: PreviewProvider {
     static var previews: some View {
-        DefaultAdView(advert: BillboardSamples.sampleDefaultAd)
+        DefaultAdView(advert: BillboardSamples.sampleDefaultAd, config: BillboardConfiguration())
     }
 }
 

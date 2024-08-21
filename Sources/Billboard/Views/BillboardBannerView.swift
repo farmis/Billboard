@@ -46,7 +46,8 @@ public struct BillboardBannerView : View {
                     
                     VStack(alignment: .leading, spacing: 4) {
                         BillboardAdInfoLabel(advert: advert)
-                        
+                            .opacity(config.isPromotion ? 0 : 1)
+
                         VStack(alignment: .leading) {
                             Text(advert.title)
                                 .font(.compatibleSystem(.footnote, design: .rounded, weight: .bold))
@@ -70,7 +71,7 @@ public struct BillboardBannerView : View {
             
             Group {
                 if !hideDismissButtonAndTimer {
-                    if canDismiss {
+                    if canDismiss || config.isPromotion {
                         Button {
                             #if os(iOS)
                             if config.allowHaptics {

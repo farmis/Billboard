@@ -9,6 +9,12 @@ import SwiftUI
 
 struct DefaultAdView : View {
     let advert : BillboardAd
+    let config : BillboardConfiguration
+
+    init(advert: BillboardAd, config: BillboardConfiguration) {
+        self.advert = advert
+        self.config = config
+    }
     
     var body: some View {
         if #available(iOS 16, *) {
@@ -19,7 +25,7 @@ struct DefaultAdView : View {
                     
                     VStack {
                         Spacer()
-                        BillboardTextView(advert: advert)
+                        BillboardTextView(advert: advert, config: config)
                         Spacer()
                     }
                     Spacer()
@@ -28,7 +34,7 @@ struct DefaultAdView : View {
                 VStack {
                     Spacer()
                     BillboardImageView(advert: advert)
-                    BillboardTextView(advert: advert)
+                    BillboardTextView(advert: advert, config: config)
                     Spacer()
                 }
                 
@@ -38,7 +44,7 @@ struct DefaultAdView : View {
             VStack {
                 Spacer()
                 BillboardImageView(advert: advert)
-                BillboardTextView(advert: advert)
+                BillboardTextView(advert: advert, config: config)
                 Spacer()
             }
             .background(backgroundView)
@@ -77,7 +83,7 @@ struct DefaultAdView : View {
 
 struct DefaultAdView_Previews: PreviewProvider {
     static var previews: some View {
-        DefaultAdView(advert: BillboardSamples.sampleDefaultAd)
+        DefaultAdView(advert: BillboardSamples.sampleDefaultAd, config: BillboardConfiguration())
     }
 }
 
