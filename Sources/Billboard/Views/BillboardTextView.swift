@@ -22,9 +22,9 @@ struct BillboardTextView : View {
                 .opacity(config.isPromotion ? 0 : 1)
 
             VStack(spacing: 6) {
-                Text(advert.title)
+                Text(advert.getTitle())
                     .font(.compatibleSystem(.title2, design: .rounded, weight: .heavy))
-                Text(advert.description)
+                Text(advert.getDescription())
                     .font(.system(.body, design: .rounded))
             }
         }

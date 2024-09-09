@@ -11,7 +11,7 @@ struct BillboardImageView : View {
     let advert : BillboardAd
     
     var body: some View {
-        CachedImage(url: advert.media.absoluteString) { phase in
+        CachedImage(url: advert.mediaURL().absoluteString) { phase in
             switch phase {
             case .empty:
                 ZStack {
@@ -26,7 +26,7 @@ struct BillboardImageView : View {
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 640)
                     .padding()
-                    .accessibilityLabel(Text(advert.name))
+                    .accessibilityLabel(Text(advert.getName()))
                     .accessibilityAddTraits(.isImage)
             default:
                 ZStack {

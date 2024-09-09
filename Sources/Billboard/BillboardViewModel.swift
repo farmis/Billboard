@@ -52,7 +52,7 @@ public final class BillboardViewModel : ObservableObject {
             let adToShow = filteredAds.randomElement()
             
             if let adToShow {
-                Logger.billboard.debug("✨ Billboard Ad presented: \(adToShow.name)")
+                Logger.billboard.debug("✨ Billboard Ad presented: \(adToShow.getName())")
             }
             
             return adToShow
@@ -84,7 +84,7 @@ public final class BillboardViewModel : ObservableObject {
             let adToShow = filteredAds.randomElement()
             
             if let adToShow {
-                Logger.billboard.debug("✨ Billboard Ad presented: \(adToShow.name)")
+                Logger.billboard.debug("✨ Billboard Ad presented: \(adToShow.getName())")
             }
             
             return adToShow

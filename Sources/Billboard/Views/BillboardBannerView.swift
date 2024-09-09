@@ -49,12 +49,12 @@ public struct BillboardBannerView : View {
                             .opacity(config.isPromotion ? 0 : 1)
 
                         VStack(alignment: .leading) {
-                            Text(advert.title)
+                            Text(advert.getTitle())
                                 .font(.compatibleSystem(.footnote, design: .rounded, weight: .bold))
                                 .foregroundColor(advert.text)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.75)
-                            Text(advert.name)
+                            Text(advert.getName())
                                 .font(.compatibleSystem(.caption2, design: .rounded, weight: .medium).smallCaps())
                                 .foregroundColor(advert.tint)
                                 .opacity(0.8)
@@ -98,7 +98,7 @@ public struct BillboardBannerView : View {
             }
             .padding(.trailing, 9)
         }
-        .accessibilityLabel(Text("\(advert.name), \(advert.title)"))
+        .accessibilityLabel(Text("\(advert.getName()), \(advert.getTitle())"))
         .padding(10)
         .background(backgroundView)
         .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.primary.opacity(0.1), lineWidth: 1))

@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var adtoshow :BillboardAd? = nil
     @State private var allAds : [BillboardAd] = []
     
-    let config = BillboardConfiguration(advertDuration: 5, isPromotion: true)
+    let config = BillboardConfiguration(adsJSONURL: URL(string: "https://data.farmis.lt/reklamos.json"), advertDuration: 5, isPromotion: true)
 
     var body: some View {
         NavigationStack {
@@ -55,7 +55,7 @@ struct ContentView: View {
                         Button {
                             adtoshow = ad
                         } label: {
-                            Text(ad.name)
+                            Text(ad.getName())
                                 .padding(6)
                         }
                         

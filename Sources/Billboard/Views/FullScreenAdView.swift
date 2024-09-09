@@ -29,7 +29,7 @@ struct FullScreenAdView : View {
         }
         .background(
             ZStack {
-                CachedImage(url: advert.media.absoluteString, content: { phase in
+                CachedImage(url: advert.mediaURL().absoluteString, content: { phase in
                     switch phase {
                     case .empty:
                         ZStack {

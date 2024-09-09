@@ -37,7 +37,7 @@ struct DefaultAdView : View {
                     BillboardTextView(advert: advert, config: config)
                     Spacer()
                 }
-                
+                .fixedSize(horizontal: false, vertical: true)
             }
             .background(backgroundView)
         } else {
@@ -55,7 +55,7 @@ struct DefaultAdView : View {
     @ViewBuilder
     var backgroundView : some View {
         if advert.transparent {
-            CachedImage(url: advert.media.absoluteString, content: { phase in
+            CachedImage(url: advert.mediaURL().absoluteString, content: { phase in
                 switch phase {
                 case .success(let image):
                     ZStack {
