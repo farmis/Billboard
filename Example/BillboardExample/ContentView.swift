@@ -35,8 +35,6 @@ struct ContentView: View {
                         if !premium.didBuyPremium {
                             showRandomAdvert = true
                         }
-                        
-                        
                     } label: {
                         HStack {
                             Image(systemName: "eyes")
@@ -83,7 +81,9 @@ struct ContentView: View {
                 showRandomAdvert = !newValue
             }
         }
-        .showBillboard(when: $showRandomAdvert, configuration: config) {
+        .showBillboard(when: $showRandomAdvert, configuration: config, onAppear: {
+            print("Showing Billboard")
+        }) {
             // Replace this view with your Paywall
             VStack {
                 Text("Your Paywall goes here")
